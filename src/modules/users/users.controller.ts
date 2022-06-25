@@ -13,13 +13,13 @@ import { UsersService } from './users.service'
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get('me/:id')
-  public async me(@Param('id', ParseIntPipe) userId: number) {
+  @Get('me/:userId')
+  public async me(@Param('userId', ParseIntPipe) userId: number) {
     return this.usersService.me(userId)
   }
 
-  @Get('notification/:id')
-  public async notifications(@Param('id', ParseIntPipe) userId: number) {
+  @Get('notification/:userId')
+  public async notifications(@Param('userId', ParseIntPipe) userId: number) {
     return this.usersService.findNotifications(userId)
   }
 

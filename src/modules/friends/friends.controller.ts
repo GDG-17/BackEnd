@@ -6,8 +6,8 @@ import { FriendsService } from './friends.service'
 export class FriednsController {
   constructor(private readonly friendsService: FriendsService) {}
 
-  @Get(':id')
-  public async friends(@Param('id', ParseIntPipe) userId: number) {
+  @Get(':userId')
+  public async friends(@Param('userId', ParseIntPipe) userId: number) {
     return this.friendsService.findAll(userId)
   }
 
