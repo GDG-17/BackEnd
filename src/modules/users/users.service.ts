@@ -46,7 +46,15 @@ export class UsersService {
   }
 
   public async me(userId: number) {
-    return this.userRepository.findOneBy({ id: userId })
+    const user = await this.userRepository.findOneBy({ id: userId })
+    return {
+      userId: user.id,
+      emoji: user.emoji,
+      userName: user.userName,
+      description: user.description,
+      expiredAt: user.expiredAt,
+      profileImage: user.profileImage,
+    }
   }
 
   public async create(createUserRequest: CreateUserRequest) {
