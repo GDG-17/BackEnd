@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common'
+import { Body, Controller, Get, ParseIntPipe, Post, Query } from '@nestjs/common'
 import { CreateFriendRequest } from './friends.dto'
 import { FriendsService } from './friends.service'
 
