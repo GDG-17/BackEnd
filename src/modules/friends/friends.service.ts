@@ -18,9 +18,10 @@ export class FriendsService {
     })
 
     return friends.map((friend) => {
-      const { id, profileImage, emoji, description, expiredAt } = friend.targetUser
+      const { id, profileImage, emoji, description, expiredAt, userName } = friend.targetUser
       return {
         userId: id,
+        userName,
         profileImage,
         expiredAt,
         interesting: friend.interesting,
