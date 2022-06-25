@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common'
 import { CreateFriendRequest } from './friends.dto'
 import { FriendsService } from './friends.service'
 
@@ -6,8 +6,8 @@ import { FriendsService } from './friends.service'
 export class FriednsController {
   constructor(private readonly friendsService: FriendsService) {}
 
-  @Get(':userId')
-  public async friends(@Param('userId', ParseIntPipe) userId: number) {
+  @Get()
+  public async friends(@Query('userId', ParseIntPipe) userId: number) {
     return this.friendsService.findAll(userId)
   }
 

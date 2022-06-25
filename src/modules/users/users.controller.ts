@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common'
+import { Body, Controller, Get, ParseIntPipe, Patch, Post, Query } from '@nestjs/common'
 import {
   CreateNotificationRequest,
   CreateSubscribeRequest,
@@ -13,13 +13,13 @@ import { UsersService } from './users.service'
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get('me/:userId')
-  public async me(@Param('userId', ParseIntPipe) userId: number) {
+  @Get('me')
+  public async me(@Query('userId', ParseIntPipe) userId: number) {
     return this.usersService.me(userId)
   }
 
-  @Get('notification/:userId')
-  public async notifications(@Param('userId', ParseIntPipe) userId: number) {
+  @Get('notification')
+  public async notifications(@Query('userId', ParseIntPipe) userId: number) {
     return this.usersService.findNotifications(userId)
   }
 
