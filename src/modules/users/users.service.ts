@@ -46,7 +46,7 @@ export class UsersService {
   }
 
   public async me(userId: number) {
-    return this.userRepository.findBy({ id: userId })
+    return this.userRepository.findOneBy({ id: userId })
   }
 
   public async create(createUserRequest: CreateUserRequest) {
