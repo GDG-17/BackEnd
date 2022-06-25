@@ -17,18 +17,20 @@ export class FriendsService {
       relations: ['targetUser'],
     })
 
-    return friends.map((friend) => {
-      const { id, profileImage, emoji, description, expiredAt, userName } = friend.targetUser
-      return {
-        userId: id,
-        userName,
-        profileImage,
-        expiredAt,
-        interesting: friend.interesting,
-        description,
-        emoji,
-      } as FriendResponse
-    })
+    return friends
+      .map((friend) => {
+        const { id, profileImage, emoji, description, expiredAt, userName } = friend.targetUser
+        return {
+          userId: id,
+          userName,
+          profileImage,
+          expiredAt,
+          interesting: friend.interesting,
+          description,
+          emoji,
+        } as FriendResponse
+      })
+      .sort((l, r) => (l.expiredAt > r.expiredAt ? -1 : l.expiredAt < r.expiredAt ? 1 : 0))
   }
 
   public async create(createFriendRequest: CreateFriendRequest) {

@@ -80,7 +80,6 @@ export class UsersService {
       where: { targetUserId: userId, interesting: true },
     })
 
-    console.log(user.id)
     for (const user of interestingUsers) {
       await this.notificationRepository.save(
         new Notification({
@@ -104,17 +103,19 @@ export class UsersService {
       relations: ['user'],
     })
 
-    return notifications.map((notification) => {
-      const { user, emoji, type } = notification
-      const text =
-        type === NotificationType.COCK
-          ? `${user.userName}님이 회원님을 찔렀습니다🍴`
-          : `${user.userName}님이 상태를 변경하셨습니다🥳`
-      return {
-        emoji,
-        text,
-      } as NotificationResponse
-    })
+    return notifications
+      .map((notification) => {
+        const { user, emoji, type } = notification
+        const text =
+          type === NotificationType.COCK
+            ? `${user.userName}님이 회원님을 찔렀습니다🍴`
+            : `${user.userName}님이 상태를 변경하셨습니다🥳`
+        return {
+          emoji,
+          text,
+        } as NotificationResponse
+      })
+      .reverse()
   }
 
   public async createSubscribe(createSubscribeRequest: CreateSubscribeRequest) {
