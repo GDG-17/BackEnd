@@ -82,7 +82,12 @@ export class UsersService {
 
     for (const user of interestingUsers) {
       await this.notificationRepository.save(
-        new Notification({ userId, targetUserId: user.id, type: NotificationType.INTERESTING }),
+        new Notification({
+          userId,
+          targetUserId: user.id,
+          type: NotificationType.INTERESTING,
+          emoji,
+        }),
       )
     }
   }
