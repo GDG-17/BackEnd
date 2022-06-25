@@ -80,11 +80,12 @@ export class UsersService {
       where: { targetUserId: userId, interesting: true },
     })
 
+    console.log(user.id)
     for (const user of interestingUsers) {
       await this.notificationRepository.save(
         new Notification({
           userId,
-          targetUserId: user.id,
+          targetUserId: user.userId,
           type: NotificationType.INTERESTING,
           emoji,
         }),
